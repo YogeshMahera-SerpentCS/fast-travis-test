@@ -18,8 +18,12 @@ virtualenv:
   system_site_packages: true
 
 env:
-  - VERSION="8.0" ODOO_REPO="vauxoo/odoo" TESTS="1" LINT_CHECK="0" TRANSIFEX="0" INCLUDE="test_module"
-  - VERSION="8.0" TESTS="0" TRANSIFEX="0" LINT_CHECK="1"
+  global:
+  - VERSION="8.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
+  - WEBSITE_REPO="0"
+  matrix:
+  - LINT_CHECK="1"
+  - TESTS="1" ODOO_REPO="odoo/odoo"
 
 install:
   - git clone --single-branch --depth=1 https://github.com/OCA/maintainer-quality-tools.git -b master ${HOME}/maintainer-quality-tools
